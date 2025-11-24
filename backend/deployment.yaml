@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: danchive-backend
+  namespace: danchive
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: danchive-backend
+  template:
+    metadata:
+      labels:
+        app: danchive-backend
+    spec:
+      containers:
+        - name: backend
+          image: lifeisgenie/danchive-backend:backend-latest
+          ports:
+            - containerPort: 8080
+          env:
+            - name: SPRING_PROFILES_ACTIVE
+              value: prod
